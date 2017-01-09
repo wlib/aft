@@ -46,7 +46,6 @@ case ARGV[0]
         outfile = "aft#{i}.out"
         i += 1
       end
-      outfile = "aft-#{i}.file"
     end
     decompress(zipped, outfile)
     exit
