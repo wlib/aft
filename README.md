@@ -1,6 +1,6 @@
 # Awesome File Share - super simple and quick file sharing server and client
 
-[![Gem Version](https://badge.fury.io/rb/aft.svg)](https://badge.fury.io/rb/aft
+[![Gem Version](https://badge.fury.io/rb/aft.svg)](https://badge.fury.io/rb/aft)
 
 ## Why It's Awesome
 
