@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+set -vx
+
+bundle install
+
+clear
+printf "\tAFT installed successfully\n\n\
+To use AFT as a server:\n\
+\t$ afserver filetoshare.txt\n\
+\t'afserver --help' for help\n\
+To use AFT as a client:\n\
+\t$ afclient [server IP] file.txt\n\
+\t'afclient --help' for help\n\n\
+Examples:\n\
+\t\$afserver log.txt\n\
+\t\$afclient 10.0.0.3\n\
+\t\$afclient 79.93.20.168 download.dat\n"

@@ -1,0 +1,56 @@
+#!/usr/bin/env ruby
+# AFT is an awesome file transfer tool
+# Daniel Ethridge
+
+require "aft"
+include Aft
+require "aft/version"
+
+help = """The quick and simple file transfer handler - AFT
+
+aft [--help|-h]               :  Displays this stuff
+aft [--version|-V]            :  Print version
+aft [--serve|-s] <file>       :  Start serving `file`, it will be zipped and downloadable
+aft [--get|-g] <addr> <file>  :  Get the content from `addr` (ip or domain) and write to `file`
+
+See the source at : https://github.com/wlib/aft
+Made by Daniel Ethridge | git.io/de
+"""
+
+# This because  the `case` below isn't friendly with nil values e.g. if no arguments
+if ARGV.length == 0
+  puts help
+  exit
+end
+
+# Some CLI stuff
+case ARGV[0]
+  when "--help", "-h"
+    puts help
+    exit
+  when "--version", "-V"
+    puts "AFT v#{VERSION}"
+    exit
+  when "--serve", "-s"
+    zipped = compress(ARGV[1])
+    serve(zipped)
+    exit
+  when "--get", "-g"
+    zipped = get(ARGV[1])
+    if ARGV[2]
+      outfile = ARGV[2]
+    else
+      outfile = "aft.out"
+      i = 0
+      while File.exist?(outfile)
+        outfile = "aft#{i}.out"
+        i += 1
+      end
+      outfile = "aft-#{i}.file"
+    end
+    decompress(zipped, outfile)
+    exit
+  else
+    puts help
+    exit
+end
